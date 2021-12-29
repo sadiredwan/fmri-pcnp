@@ -1,0 +1,15 @@
+/mni-tmp
+/nilearn-cache
+/pcnp-mni/anat
+/pcnp-mni/rest-bold
+/pcnp-ucla/anat
+/pcnp-ucla/rest-bold
+/preproc/data
+/references
+/tmp
+/utils/spm12
+/voxel-timeseries
+fnames.py
+fnames.txt
+mean.py
+pipeline.txt
