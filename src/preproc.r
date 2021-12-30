@@ -75,6 +75,7 @@ for(fname in fnames){
 
 	anatomical = files['anatomical']
 	anat_img = checknii(anatomical)
+
 	acpc_reorient(
 		infiles = anat_img,
 		modality = 'T1'
@@ -85,9 +86,9 @@ for(fname in fnames){
 		moving = anat_img,
 		prefix = 'r'
 	)
+
 	coreg_anat = coreg$outfile
 	coreg_img = readnii(coreg_anat)
-	# double_ortho(coreg_img, mean_nifti)
 
 	#segment
 	seg_res = spm12_segment(
