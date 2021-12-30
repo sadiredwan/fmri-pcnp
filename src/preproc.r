@@ -38,8 +38,7 @@ for(fname in fnames){
 	nslices = 34
 	n_time_points = 152
 	ta = tr-(tr/nslices)
-	slice_order = seq(2, nslices, 2)
-	slice_order = c(slice_order, seq(1, nslices, 2))
+	slice_order = c(seq(2, nslices, 2), seq(1, nslices, 2))
 	ref_slice = slice_order[median(seq(nslices))]
 
 	st_batch = build_spm12_slice_timing(
