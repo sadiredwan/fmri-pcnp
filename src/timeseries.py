@@ -16,5 +16,5 @@ if __name__ == '__main__':
 		df = pd.DataFrame(columns=atlas.labels)
 		time_series = masker.fit_transform(nb.load(directory+fname))
 		for i, ts in enumerate(time_series.T):
-				df[df.columns[i]] = ts
+			df[df.columns[i]] = ts
 		df.to_csv('../timeseries/'+fname[:9]+'.csv', index=False)
