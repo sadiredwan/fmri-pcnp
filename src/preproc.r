@@ -66,7 +66,7 @@ for(fname in fnames){
 	#coregister
 	aimg = st_corrected$outfile
 	mean_img = realigned[['mean']]
-	mean_nifti = readnii(mean_img)
+	check_mean = checknii(mean_img)
 
 	acpc_reorient(
 		infiles = c(mean_img, aimg),
@@ -88,6 +88,7 @@ for(fname in fnames){
 	)
 
 	coreg_anat = coreg$outfile
+	check_coreg = checknii(coreg_anat)
 
 	#segment
 	seg_res = spm12_segment(
@@ -111,7 +112,7 @@ for(fname in fnames){
 		bounding_box = bbox,
 		retimg = FALSE
 	)
-	
+
 	norm_data = norm_res$outfiles
 	names(norm_data) = c('anat', 'mean', 'fmri')
 	norm_fmri = readnii(norm_data['fmri'])

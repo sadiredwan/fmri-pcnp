@@ -13,7 +13,6 @@ if __name__ == '__main__':
 				' '+INDIR+fname+
 				' '+OUTDIR+fname+
 				' -f 0.5 -g 0')
-		
 		os.system(FSLDIR+'bin/flirt'+
 				' -in '+OUTDIR+fname+
 				' -ref '+FSLDIR+'data/standard/MNI152_T1_2mm_brain'+

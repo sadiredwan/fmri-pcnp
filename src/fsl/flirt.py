@@ -22,10 +22,9 @@ if __name__ == '__main__':
 		os.mkdir(os.path.join('tmp'))
 		for i, timg in enumerate(image.iter_img(img)):
 			nb.save(timg, 'tmp/'+str(i)+'.nii.gz')
-		
+
 		if os.path.exists('mni-tmp/'):
 			shutil.rmtree('mni-tmp/')
-
 		shutil.copytree('tmp/', 'mni-tmp/')
 		FSLDIR = '/home/sadi/fsl/'
 		INDIR = os.getcwd()+'/tmp/'
@@ -39,7 +38,7 @@ if __name__ == '__main__':
 					' -cost corratio'+
 					' -dof 9'+
 					' -interp trilinear')
-		
+
 		mni_reg = []
 		for f in alphanum(os.listdir('mni-tmp/')):
 			mni_reg.append('mni-tmp/'+f)
@@ -48,5 +47,4 @@ if __name__ == '__main__':
 		nb.save(mni_reg, 'pcnp-mni/rest-bold/'+fname)
 		shutil.rmtree('tmp/')
 		shutil.rmtree('mni-tmp/')
-		
 	gc.collect()
