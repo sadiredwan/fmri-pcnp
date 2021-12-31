@@ -88,7 +88,6 @@ for(fname in fnames){
 	)
 
 	coreg_anat = coreg$outfile
-	coreg_img = readnii(coreg_anat)
 
 	#segment
 	seg_res = spm12_segment(
@@ -118,11 +117,11 @@ for(fname in fnames){
 	norm_fmri = readnii(norm_data['fmri'])
 	norm_fmri@sform_code <- 4
 	norm_fmri@qform_code <- 4
-	write_nifti(norm_fmri, paste('../pcnp-mni/rest-bold/w', substr(fname, 0, 9), '_task-rest_bold.nii', sep=''))
-}
+	write_nifti(norm_fmri, paste('../pcnp-mni/rest-bold/w', fname, sep=''))
 
-for(tmp in list.files(path = '../tmp')){
-	file.remove(paste('../tmp/', tmp, sep=''))
+	for(tmp in list.files(path = '../tmp')){
+		file.remove(paste('../tmp/', tmp, sep=''))
+	}
 }
 
 close(f)
