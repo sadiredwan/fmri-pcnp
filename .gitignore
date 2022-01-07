@@ -1,6 +1,7 @@
 /mni-tmp
 /nilearn-cache
 /pcnp-mni/anat
+/pcnp-mni/pamret-bold
 /pcnp-mni/rest-bold
 /pcnp-ucla/anat
 /pcnp-ucla/pamret-bold
@@ -10,7 +11,7 @@
 /tmp
 /utils/spm12
 /voxel-timeseries
-fnames.py
+util.py
 fnames.txt
 mean.py
 pipeline.txt
