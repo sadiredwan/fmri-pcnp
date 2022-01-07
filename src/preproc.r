@@ -7,15 +7,20 @@ if(!have_matlab()){
 	stop('404:matlab')
 }
 
+args = commandArgs(trailingOnly=TRUE)
+indir <- if(args=='rest') '../pcnp-ucla/rest-bold/' else '../pcnp-ucla/pamret-bold/'
+outdir <- if(args=='rest') '../pcnp-mni/rest-bold/' else '../pcnp-mni/pamret-bold/'
+anatdir <- '../pcnp-ucla/anat/'
+
 add_spm_dir('../utils/spm12')
 
 f <- file('../pipeline.txt', open='r')
 fnames <-readLines(f)
 
 for(fname in fnames){
-	file.copy(paste('../pcnp-ucla/rest-bold/', substr(fname, 0, 9), '_task-rest_bold.nii', sep=''), '../tmp')
-	file.copy(paste('../pcnp-ucla/anat/', substr(fname, 0, 9), '_T1w.nii', sep=''), '../tmp')
-	functional = paste('../tmp/', substr(fname, 0, 9), '_task-rest_bold.nii', sep='')
+	file.copy(paste(indir, fname, sep=''), '../tmp')
+	file.copy(paste(anatdir, substr(fname, 0, 9), '_T1w.nii', sep=''), '../tmp')
+	functional = paste('../tmp/', fname, sep='')
 	anatomical = paste('../tmp/', substr(fname, 0, 9), '_T1w.nii', sep='')
 	files = c(anatomical = anatomical, functional = functional)
 
@@ -118,7 +123,7 @@ for(fname in fnames){
 	norm_fmri = readnii(norm_data['fmri'])
 	norm_fmri@sform_code <- 4
 	norm_fmri@qform_code <- 4
-	write_nifti(norm_fmri, paste('../pcnp-mni/rest-bold/w', fname, sep=''))
+	write_nifti(norm_fmri, paste(outdir, fname, sep=''))
 
 	for(tmp in list.files(path = '../tmp')){
 		file.remove(paste('../tmp/', tmp, sep=''))
