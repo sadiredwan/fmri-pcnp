@@ -120,10 +120,20 @@ for(fname in fnames){
 
 	norm_data = norm_res$outfiles
 	names(norm_data) = c('anat', 'mean', 'fmri')
-	norm_fmri = readnii(norm_data['fmri'])
-	norm_fmri@sform_code <- 4
-	norm_fmri@qform_code <- 4
-	write_nifti(norm_fmri, paste(outdir, fname, sep=''))
+
+	#smooth
+	smooth_res = spm12_smooth(
+		filename = norm_data['fmri'],
+		fwhm = 8,
+		prefix = 's',
+		retimg = FALSE,
+	)
+
+	final_data = smooth_res$outfiles	
+	final_fmri = readnii(final_data)
+	final_fmri@sform_code <- 4
+	final_fmri@qform_code <- 4
+	write_nifti(final_fmri, paste(outdir, fname, sep=''))
 
 	for(tmp in list.files(path = '../tmp')){
 		file.remove(paste('../tmp/', tmp, sep=''))
