@@ -22,17 +22,17 @@ for(fname in fnames){
 	file.copy(paste(anatdir, substr(fname, 0, 9), '_T1w.nii', sep=''), '../tmp')
 	functional = paste('../tmp/', fname, sep='')
 	anatomical = paste('../tmp/', substr(fname, 0, 9), '_T1w.nii', sep='')
-	files = c(anatomical = anatomical, functional = functional)
+	files = c(anatomical=anatomical, functional=functional)
 
 	#realign
-	realign_batch = build_spm12_realign( 
-		filename = functional, 
+	realign_batch = build_spm12_realign(
+		filename = functional,
 		register_to = 'mean',
 		reslice = 'mean'
 	)
 
-	realigned = spm12_realign( 
-		filename = functional, 
+	realigned = spm12_realign(
+		filename = functional,
 		register_to = 'mean',
 		reslice = 'mean',
 		clean = FALSE
@@ -59,12 +59,12 @@ for(fname in fnames){
 		filename = realigned[['outfiles']],
 		time_points = seq(n_time_points),
 		nslices = nslices,
-		tr = tr, 
+		tr = tr,
 		slice_order = slice_order,
-		ta = ta, 
+		ta = ta,
 		ref_slice = ref_slice,
-		prefix = 'a', 
-		clean = FALSE, 
+		prefix = 'a',
+		clean = FALSE,
 		retimg = FALSE
 	)
 
@@ -129,7 +129,7 @@ for(fname in fnames){
 		retimg = FALSE,
 	)
 
-	final_data = smooth_res$outfiles	
+	final_data = smooth_res$outfiles
 	final_fmri = readnii(final_data)
 	final_fmri@sform_code <- 4
 	final_fmri@qform_code <- 4

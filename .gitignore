@@ -1,5 +1,5 @@
+*/nilearn-cache
 /mni-tmp
-/nilearn-cache
 /pcnp-mni/anat
 /pcnp-mni/pamret-bold
 /pcnp-mni/rest-bold
@@ -8,6 +8,7 @@
 /pcnp-ucla/rest-bold
 /preproc/data
 /references
+/timeseries
 /tmp
 /utils/spm12
 /voxel-timeseries
