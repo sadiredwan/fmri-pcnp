@@ -135,7 +135,7 @@ for(fname in fnames){
 	final_fmri@qform_code <- 4
 	write_nifti(final_fmri, paste(outdir, fname, sep=''))
 
-	for(tmp in list.files(path = '../tmp')){
+	for(tmp in list.files(path='../tmp')){
 		file.remove(paste('../tmp/', tmp, sep=''))
 	}
 }
