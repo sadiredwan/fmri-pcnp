@@ -15,7 +15,7 @@ anatdir <- '../pcnp-ucla/anat/'
 add_spm_dir('../utils/spm12')
 
 f <- file('../pipeline.txt', open='r')
-fnames <-readLines(f)
+fnames <- readLines(f)
 
 for(fname in fnames){
 	file.copy(paste(indir, fname, sep=''), '../tmp')
